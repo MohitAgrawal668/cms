@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Category\CreateCategoryRequest;
+use App\Http\Requests\Category\UpdateCategoryRequest;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -13,7 +14,9 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view("category.index");
+        $categories = Category::all();
+        $data = compact('categories');
+        return view("category.index")->with($data);
     }
 
     /**
@@ -49,15 +52,16 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Category $category)
     {
-        //
+        $data = compact('category');
+        return view("category.create")->with($data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateCategoryRequest $request, string $id)
     {
         //
     }
