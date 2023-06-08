@@ -29,10 +29,10 @@ class CategoryController extends Controller
      */
     public function store(CreateCategoryRequest $request)
     {
-        $category = new Category;
-        $category->name = $request->name;
-        $category->save();
-
+        Category::create([
+            "name" => $request->name    
+        ]);
+        
         session()->flash("success","Category created successfully");    
 
         return redirect(route('category.index'));
