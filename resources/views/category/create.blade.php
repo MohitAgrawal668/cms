@@ -13,7 +13,7 @@
                         <div class="form-group">
                           <label for="">Name</label>
                           <input type="text" name="name" id="name" class="form-control" placeholder="" aria-describedby="helpId">
-                          <small id="helpId" class="text-muted">
+                          <small id="helpId" class="text-danger">
                             @error('name')
                                 {{ $message }}
                             @enderror
