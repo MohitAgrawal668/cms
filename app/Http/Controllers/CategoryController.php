@@ -61,9 +61,12 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, string $id)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
-        //
+        $category->name = $request->name;
+        $category->save();
+        session()->flash("success","Category updated successfully");
+        return redirect(route('category.index'));
     }
 
     /**
