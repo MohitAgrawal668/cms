@@ -63,8 +63,9 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->name = $request->name;
-        $category->save();
+        $category -> update([
+            "name" => $request->name
+        ]);
         session()->flash("success","Category updated successfully");
         return redirect(route('category.index'));
     }
