@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Categories <a href="{{route("category.create")}}" class='btn btn-info btn-sm' style="float:right">Create</a></div>
+                <div class="card-header">Trashed Posts <a href="{{route("post.index")}}" class='btn btn-info btn-sm' style="float:right">Posts List</a> </div>
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -13,6 +13,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">S.No.</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -21,17 +22,15 @@
                                 @php
                                     $i=0;   
                                 @endphp
-                                @foreach ($categories as $category)
+                                @foreach ($posts as $post)
                                     @php
                                         $i++;
                                     @endphp
                                     <tr class="">
                                         <td scope="row">{{$i}}.</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>
-                                            <a href="{{route('category.edit',['category' => $category->id ])}}"><button class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button></a>
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="show_delete_box({{ $category->id }})"><i class="fas fa-trash"></i></button>
-                                        </td>
+                                        <td><img src="{{ asset('storage/uploads/'.$post->image) }}" style="width;100px;height:60px;object-fit:contain;" alt=""></td>
+                                        <td>{{ $post->title }}</td>
+                                        <td><a href="{{route('post.restore',['id'=>$post->id])}}" class="btn btn-success btn-sm">Restore</a>&nbsp;&nbsp;<a onclick="show_delete_box({{$post->id}})" class="btn btn-danger btn-sm">Delete</a></td>
                                     </tr>            
                                 @endforeach
                             </tbody>
@@ -72,12 +71,12 @@
 @endsection
 @section('script')
 <script>
-  function show_delete_box(id)
+  function show_delete_box(post)
     {
         $("#deleteModal").removeClass('fade');
         $("#deleteModal").addClass('show');
         $("#deleteModal").css('display',"block");
-        $("#deleteForm").attr("action","category/"+id);
+        $("#deleteForm").attr("action","/post/"+post);
     }
   function close_delete_box()
     {

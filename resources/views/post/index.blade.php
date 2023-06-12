@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
             <div class="card">
-                <div class="card-header">Categories <a href="{{route("category.create")}}" class='btn btn-info btn-sm' style="float:right">Create</a></div>
+                <div class="card-header">Posts <a href="{{route("post.create")}}" class='btn btn-info btn-sm' style="float:right">Create</a> &nbsp;&nbsp; <a href="{{route("post.trashed")}}" class='btn btn-danger btn-sm' style="float:right">trashed List</a> </div>
 
                 <div class="card-body">
                     <div class="table-responsive">
@@ -13,7 +13,9 @@
                             <thead>
                                 <tr>
                                     <th scope="col">S.No.</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Name</th>
+                                    <th class="col">Published At</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -21,17 +23,16 @@
                                 @php
                                     $i=0;   
                                 @endphp
-                                @foreach ($categories as $category)
+                                @foreach ($posts as $post)
                                     @php
                                         $i++;
                                     @endphp
                                     <tr class="">
                                         <td scope="row">{{$i}}.</td>
-                                        <td>{{ $category->name }}</td>
-                                        <td>
-                                            <a href="{{route('category.edit',['category' => $category->id ])}}"><button class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button></a>
-                                            <button type="button" class="btn btn-danger btn-sm" onclick="show_delete_box({{ $category->id }})"><i class="fas fa-trash"></i></button>
-                                        </td>
+                                        <td><img src="{{ asset('storage/uploads/'.$post->image) }}" style="width;100px;height:60px;object-fit:contain;" alt=""></td>
+                                        <td>{{ $post->title }}</td>
+                                        <td>{{ $post->published_at }}</td>
+                                        <td><a href="{{ route('post.edit', ['post' => $post->id]) }}" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;<a href="{{route('post.move_to_trash',['post' => $post->id])}}" class="btn btn-danger btn-sm">Trash</a></td>
                                     </tr>            
                                 @endforeach
                             </tbody>
