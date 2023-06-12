@@ -15,6 +15,7 @@
                                     <th scope="col">S.No.</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Category</th>
                                     <th class="col">Published At</th>
                                     <th scope="col">Action</th>
                                 </tr>
@@ -31,6 +32,7 @@
                                         <td scope="row">{{$i}}.</td>
                                         <td><img src="{{ asset('storage/uploads/'.$post->image) }}" style="width;100px;height:60px;object-fit:contain;" alt=""></td>
                                         <td>{{ $post->title }}</td>
+                                        <td>{{ $post->category->name }}</td>
                                         <td>{{ $post->published_at }}</td>
                                         <td><a href="{{ route('post.edit', ['post' => $post->id]) }}" class="btn btn-info btn-sm">Edit</a>&nbsp;&nbsp;<a href="{{route('post.move_to_trash',['post' => $post->id])}}" class="btn btn-danger btn-sm">Trash</a></td>
                                     </tr>            

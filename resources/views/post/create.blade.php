@@ -59,6 +59,20 @@
                             <label for="">Published At</label>
                             <input type="text" name="published_at" id="published_at" class="form-control" placeholder="" {{ isset($post) ? $post->published_at : '' }}>
                         </div>
+                        <div class="form-group">
+                            <label for="">Category</label>
+                            <select name="category" id="category" class='form-control'>
+                                <option value="">Select Category</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}"  @if(isset($post)){{ $post->category_id == $category->id ? "selected" : ""}}@endif>{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                            <small id="helpId" class="text-danger">
+                              @error('category')
+                                  {{ $message }}
+                              @enderror
+                            </small>
+                          </div>
                         <button type="submit" class="btn btn-info my-4">{{ isset($post) ? 'Update Post' : 'Save Post' }}</button>
                     </form>
                 </div>

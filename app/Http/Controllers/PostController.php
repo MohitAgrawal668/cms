@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CreatePostRequest;
+use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
 use App\Models\Post;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
@@ -25,7 +27,9 @@ class PostController extends Controller
      */
     public function create()
     {
-        return view("post.create");
+        $categories = Category::all();
+        $data = compact('categories');
+        return view("post.create")->with($data);
     }
 
     /**
@@ -40,7 +44,8 @@ class PostController extends Controller
             "description" => $request->description,
             "content" => $request->content,
             "image" => $image,
-            "published_at" => $request->published_at
+            "published_at" => $request->published_at,
+            "category_id"  => $request->category
         ]);
         session()->flash("success","Post created successfully");
 
@@ -60,14 +65,15 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        $data = compact('post');
+        $categories = Category::all();
+        $data = compact('post','categories');
         return view("post.create")->with($data);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, POST $post)
+    public function update(UpdatePostRequest $request, POST $post)
     {
         if(!empty($request->file('image')))
             {
@@ -81,7 +87,8 @@ class PostController extends Controller
             "title" => $request->title,
             "description" => $request->description,
             "content" => $request->content,
-            "published_at" => $request->published_at
+            "published_at" => $request->published_at,
+            "category_id" => $request->category
         ]);
         session()->flash("success", "Post updated successfully.");
         return redirect(route('post.index'));

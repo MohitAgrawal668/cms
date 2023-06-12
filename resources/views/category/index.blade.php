@@ -14,6 +14,7 @@
                                 <tr>
                                     <th scope="col">S.No.</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Posts</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -28,6 +29,7 @@
                                     <tr class="">
                                         <td scope="row">{{$i}}.</td>
                                         <td>{{ $category->name }}</td>
+                                        <td>{{ $category->post()->count() }}</td>
                                         <td>
                                             <a href="{{route('category.edit',['category' => $category->id ])}}"><button class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button></a>
                                             <button type="button" class="btn btn-danger btn-sm" onclick="show_delete_box({{ $category->id }})"><i class="fas fa-trash"></i></button>
