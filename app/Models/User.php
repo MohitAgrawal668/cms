@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'role',
     ];
 
     /**
@@ -42,4 +43,15 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function IsAdmin()
+        {
+            return $this->role == 'admin';
+        }
+     
+    public function getCreatedAtAttribute($value)
+        {
+             return date("d M Y, h:i a", strtotime($value));
+        }    
+
 }

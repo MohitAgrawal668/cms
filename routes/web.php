@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,4 +37,8 @@ Route::middleware(['auth'])->group(function(){
     Route::get("post/trashed/list",[PostController::class, "trashed"])->name("post.trashed");
 
     Route::get("post/restore/{id}",[PostController::class, "restore"])->name("post.restore");
+});
+Route::middleware(['auth','admin'])->group(function(){
+    Route::get("user/index",[UserController::class, "index"])->name("user.index");
+    Route::get("user/make_admin/{user}",[UserController::class, "make_admin"])->name("user.makeAdmin");
 });
