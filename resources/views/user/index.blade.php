@@ -13,6 +13,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">S.No.</th>
+                                    <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Email</th>
                                     <th class="col">Created At</th>
@@ -29,6 +30,7 @@
                                     @endphp
                                     <tr class="">
                                         <td scope="row">{{$i}}.</td>
+                                        <td><img src="{{ Gravatar::get($user->email); }}" style="width:50px;height:50px;border-radius:50%;"></td>
                                         <td>{{ $user->name }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>{{ $user->created_at }}</td>
