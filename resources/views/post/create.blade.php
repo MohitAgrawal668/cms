@@ -76,7 +76,7 @@
                         @if($tags->count()>0)
                             <div class="form-group">
                                 <label for="">Tags</label>
-                                <select name="tag[]" id="tag" class='form-control' multiple>
+                                <select name="tag[]" id="tag" class='form-control js-example-basic-single' multiple>
                                     @foreach($tags as $tag)
                                         <option value="{{ $tag->id }}" @if(in_array($tag->id, $post->tags->pluck('id')->toArray())) selected @endif>{{ $tag->name }}</option>
                                     @endforeach
@@ -95,16 +95,24 @@
 @section("css")
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+
 @endsection
 
 @section("script")
     <script type="text/javascript" src="https://unpkg.com/trix@2.0.0/dist/trix.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
     <script>
         $("#published_at").flatpickr({
             enableTime:true,
             dateFormat:"d M Y h:i",
             defaultDate: ["{{isset($post->published_at) ? $post->published_at : date('d M Y h:i')}}"]
+        });
+
+        $(document).ready(function() {
+            $('.js-example-basic-single').select2();
         });
     </script>
 @endsection
