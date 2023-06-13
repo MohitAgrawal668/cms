@@ -14,6 +14,7 @@
                                 <tr>
                                     <th scope="col">S.No.</th>
                                     <th scope="col">Name</th>
+                                    <th scope="col">Post Count</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -28,6 +29,7 @@
                                     <tr class="">
                                         <td scope="row">{{$i}}.</td>
                                         <td>{{ $tag->name }}</td>
+                                        <td>{{ $tag->posts()->count() }}</td>
                                         <td>
                                             <a href="{{route('tag.edit',['tag' => $tag->id ])}}"><button class="btn btn-info btn-sm"><i class="fas fa-edit"></i></button></a>
                                             <button type="button" class="btn btn-danger btn-sm" onclick="show_delete_box({{ $tag->id }})"><i class="fas fa-trash"></i></button>

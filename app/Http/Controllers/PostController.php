@@ -104,6 +104,12 @@ class PostController extends Controller
             "published_at" => $request->published_at,
             "category_id" => $request->category
         ]);
+
+        if($request->tag)
+            {
+                $post->tags()->sync($request->tag);
+            }
+
         session()->flash("success", "Post updated successfully.");
         return redirect(route('post.index'));
     }
