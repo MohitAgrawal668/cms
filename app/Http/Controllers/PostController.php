@@ -6,6 +6,7 @@ use App\Http\Requests\CreatePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Tag;
 use GrahamCampbell\ResultType\Success;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,6 +16,11 @@ class PostController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+        {
+            $this->middleware('categorycheck')->only('create','store');
+        }
+
     public function index()
     {
         $posts = Post::all();
@@ -28,7 +34,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        $data = compact('categories');
+        $tags = Tag::all();
+        $data = compact('categories','tags');
         return view("post.create")->with($data);
     }
 
@@ -39,7 +46,7 @@ class PostController extends Controller
     {
         $image = time()."-cms.".$request->file("image")->getClientOriginalExtension();
         $file = $request->file("image")->storeAs("uploads", $image,"public");
-        Post::create([
+        $post = Post::create([
             "title" => $request->title,
             "description" => $request->description,
             "content" => $request->content,
@@ -47,6 +54,12 @@ class PostController extends Controller
             "published_at" => $request->published_at,
             "category_id"  => $request->category
         ]);
+
+        if($request->tag)
+            {
+                $post->tags()->attach($request->tag);
+            }
+
         session()->flash("success","Post created successfully");
 
         return redirect(route("post.index"));
@@ -66,7 +79,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $categories = Category::all();
-        $data = compact('post','categories');
+        $tags = Tag::all();
+        $data = compact('post','categories','tags');
         return view("post.create")->with($data);
     }
 

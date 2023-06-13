@@ -84,6 +84,12 @@
                                 {{ session()->get('success') }}
                             </div>
                         </div>
+                    @elseif(session()->has('error'))
+                        <div class="col-md-12">
+                            <div class="alert alert-danger">
+                                {{ session()->get('error') }}
+                            </div>
+                        </div>    
                     @endif    
                     <div class="col-md-4">
                         <ul class="list-group">
@@ -92,6 +98,9 @@
                             </li>
                             <li class="list-group-item">
                                 <a href="{{route('post.index')}}">Posts</a>
+                            </li>
+                            <li class="list-group-item">
+                                <a href="{{route('tag.index')}}">Tags</a>
                             </li>
                         </ul>
                     </div>

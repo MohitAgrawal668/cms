@@ -72,7 +72,17 @@
                                   {{ $message }}
                               @enderror
                             </small>
-                          </div>
+                        </div>
+                        @if($tags->count()>0)
+                            <div class="form-group">
+                                <label for="">Tags</label>
+                                <select name="tag[]" id="tag" class='form-control' multiple>
+                                    @foreach($tags as $tag)
+                                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>    
+                        @endif
                         <button type="submit" class="btn btn-info my-4">{{ isset($post) ? 'Update Post' : 'Save Post' }}</button>
                     </form>
                 </div>
