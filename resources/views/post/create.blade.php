@@ -78,7 +78,7 @@
                                 <label for="">Tags</label>
                                 <select name="tag[]" id="tag" class='form-control js-example-basic-single' multiple>
                                     @foreach($tags as $tag)
-                                        <option value="{{ $tag->id }}" @if(in_array($tag->id, $post->tags->pluck('id')->toArray())) selected @endif>{{ $tag->name }}</option>
+                                        <option value="{{ $tag->id }}" @if(isset($post))@if(in_array($tag->id, $post->tags->pluck('id')->toArray())) selected @endif @endif>{{ $tag->name }}</option>
                                     @endforeach
                                 </select>
                             </div>    
