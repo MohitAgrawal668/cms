@@ -1,27 +1,5 @@
 <!-- footer area start -->    
 <footer class="footer-area">
-    <div class="footer_insta">
-       <div class="footer_insta_wrapper">
-          <div class="footer_insta_list">
-             <a href="#"><img src="{{asset('frontend/image/blog/f9.jpg')}}" alt="Awesome Image"></a>
-          </div>
-          <div class="footer_insta_list">
-             <a href="#"><img src="{{asset('frontend/image/blog/f8.jpg')}}" alt="Awesome Image"></a>
-          </div>
-          <div class="footer_insta_list">
-             <a href="#"><img src="{{asset('frontend/image/blog/f3.jpg')}}" alt="Awesome Image"></a>
-          </div>
-          <div class="footer_insta_list">
-             <a href="#"><img src="{{asset('frontend/image/blog/f4.jpg')}}" alt="Awesome Image"></a>
-          </div>
-          <div class="footer_insta_list">
-             <a href="#"><img src="{{asset('frontend/image/blog/f5.jpg')}}" alt="Awesome Image"></a>
-          </div>
-          <div class="footer_insta_list">
-             <a href="#"><img src="{{asset('frontend/image/blog/f2.jpg')}}" alt="Awesome Image"></a>
-          </div>
-       </div>
-    </div>
     <div class="themelazer_footer_widget_area">
        <div class="container">
           <div class="row-centered">

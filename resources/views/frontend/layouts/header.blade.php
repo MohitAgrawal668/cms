@@ -26,11 +26,7 @@
                   <div class="col-md-12">
                      <div class="themelazer_promomenu_wrapper">
                         <div class="themelazer_header_social_icons">
-                           <ul class="themelazer_social_wrapper">
-                              <li><a href="#"><i class="ti-facebook"></i></a></li>
-                              <li><a href="#"><i class="ti-pinterest-alt"></i></a></li>
-                              <li><a href="#"><i class="ti-twitter-alt"></i></a></li>
-                           </ul>
+                           <a href="{{route('login')}}" target="__blank" class="btn btn-success btn-sm">Login</a>
                         </div>
                         <div class="themelazer_mobile_logo ">
                            <a href="index.html"><img src="{{asset('frontend/image/relovan.png')}}" alt="" title=""></a>
@@ -40,36 +36,9 @@
                            <div class="themelazer-navigation">
                               <ul class="menu black_color">
                                  <li class="menu-item">
-                                    <a href="index.html">Home</a>
+                                    <a href="{{route('frontend.index')}}">Home</a>
                                  </li>
-                                 <li class="menu-item-has-children">
-                                    <a href="#">Post Feature</a>
-                                    <ul>
-                                       <li><a href="single-post-standard.html">Post standard</a></li>
-                                       <li><a href="single-post-full.html">Post Full width</a></li>
-                                       
-                                       <li><a href="single-post-left-sidebar.html">Post left sidebar</a></li>
-                                       
-                                       <li><a href="post-gallery.html">Post Gallery</a></li>
-                                       <li><a href="post-audio.html">Post Audio</a></li>
-                                       <li><a href="post-video.html">Post Video </a></li>
-                                       <li><a href="post-quate.html">Post Quote</a></li>
-                                    </ul>
-                                 </li>
-                                 <li class="menu-item-has-children">
-                                    <a href="#">Pages</a>
-                                    <ul>
-                                       
-                                       <li><a href="page-archive.html">archive page</a></li>
-                                       <li><a href="page-author.html">author page</a></li>
-                                       <li><a href="page-category.html">category page</a></li>
-                                       <li><a href="page-search.html">search page</a></li>
-                                       <li><a href="page-error.html">error</a></li>
-                                    </ul>
-                                 </li>
-                                
-                                 <li><a href="about.html">About Me</a></li>
-                                 <li><a href="contact.html">Contact</a></li>
+                                 <li><a href="{{route('frontend.contact')}}">Contact</a></li>
                               </ul>
                            </div>
                            <!-- Main Menu End-->
@@ -102,7 +71,7 @@
                <div class="row">
                   <div class="col-md-12">
                      <div class="themelazer_logo_header2">
-                        <a href="index.html"><img src="{{asset('frontend/image/relovan.png')}}" alt="" title=""></a>
+                        <a href="{{route('frontend.index')}}"><img src="{{asset('frontend/image/relovan.png')}}" alt="" title=""></a>
                      </div>
                   </div>
                </div>

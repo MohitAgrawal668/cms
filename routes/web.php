@@ -19,6 +19,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [FrontendController::class,'index'])->name("frontend.index");
+Route::get('/contact', [FrontendController::class,'contact'])->name("frontend.contact");
+Route::get('/show-posts/{category}', [FrontendController::class,'showPost'])->name("frontend.showPost");
+Route::get('/show-posts-by-tag/{tag}', [FrontendController::class,'showPostByTag'])->name("frontend.showPostByTag");
+
+
+Route::get('/postDetail/{post}', [FrontendController::class,'postDetail'])->name("frontend.postDetail");
+
+Route::get("/search", [FrontendController::class, 'search'])->name("frontend.search");
 
 Auth::routes();
 

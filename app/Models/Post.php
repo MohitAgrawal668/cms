@@ -11,6 +11,7 @@ class Post extends Model
 {
     use HasFactory;
     use SoftDeletes;
+    protected $dates = ['published_at'];
     protected $fillable = ["title","description","content","image","published_at","deleted_at", "category_id"];
 
     public function setPublishedAtAttribute($value)
@@ -31,5 +32,9 @@ class Post extends Model
     public function tags()
         {
             return $this->belongsToMany(Tag::class);
+        }    
+    public function scopePublished($query)
+        {
+            return $query->where("published_at","<=",now());
         }    
 }
